@@ -65,23 +65,29 @@ export const Game = () => {
       setHappyGuys([...happyGuys, currentGuy]);
       setLvlStatus(2);
       // console.log('успех');
+
+      setTimeout(() => {
+        if (availableGuys.length === 0) {
+          dispatch(setCurrentScreen(SCREENS.THE_RESULT)); // если свободныз ребяток больше нет - к результату
+        } else {
+          getGuy(); // иначе спавним нового
+        }
+        setLvlStatus(1);
+        setClickedOnBoardGuy(undefined);
+
+        setIsProcessing(false);
+      }, 2000); // через две секунды после результата получаем нового перса
     } else {
       setLvlStatus(3);
       dispatch(decreaseArrows());
+
+      setTimeout(() => {
+        setLvlStatus(1);
+        setClickedOnBoardGuy(undefined);
+
+        setIsProcessing(false);
+      }, 2000)
     }
-
-
-    setTimeout(() => {
-      if (availableGuys.length === 0) {
-        dispatch(setCurrentScreen(SCREENS.THE_RESULT)); // если свободныз ребяток больше нет - к результату
-      } else {
-        getGuy(); // иначе спавним нового
-      }
-      setLvlStatus(1);
-      setClickedOnBoardGuy(undefined);
-
-      setIsProcessing(false);
-    }, 2000); // через две секунды после результата получаем нового перса
   };
 
   useEffect(() => {
