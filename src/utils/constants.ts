@@ -35,7 +35,7 @@ import katyaImg from '../assets/images/peopleImgs/katyaImg.png';
 import vikaImg from '../assets/images/peopleImgs/vikaImg.png';
 import { IGuy } from '../types/guys';
 
-export const baseUrl = 'https://fantastic-conkies-9dafb4.netlify.app/';
+export const baseUrl = 'https://beta.memesis.ru/kupid/';
 
 export const resultTexts = [
   {
