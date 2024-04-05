@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '../fonts/DelaGothicOne/DelaGothicOne.css';
+
+@layer utilities {
+  .h1-text {
+    @apply font-normal leading-[58px] text-[40px] text-center text-white;
+    text-shadow: 0px 7px 1px black, 3px 7px 1px black, -3px 7px 1px black, 3px 3px 1px black,
+      3px -3px 1px black, -3px 3px 1px black, -3px -3px 1px black;
+  }
+  .p-text {
+    @apply font-normal leading-[29px] text-[20px] text-center text-white;
+
+    text-shadow:
+    3px 3px black,
+    3px -3px black,
+    0 3px black,
+    0 -3px black,
+    3px 0 black,
+    -3px 0 black,
+    -3px 3px black, 
+    -3px -3px black;
+  }
+  .button-text {
+    @apply font-normal leading-[24px] text-[24px] text-center text-black;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+body {
+  font-family: 'Dela Gothic One', sans-serif;
+  margin: 0;
+  background: rgb(63, 94, 251);
+  background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(138, 205, 234, 1) 100%);
+}
