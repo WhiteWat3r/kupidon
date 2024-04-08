@@ -20,6 +20,7 @@ import result2 from '../assets/images/backgrounds/result-2.png';
 import result3 from '../assets/images/backgrounds/result-3.png';
 
 import share from '../assets/images/backgrounds/share.png';
+import map from '../assets/images/backgrounds/map.png';
 
 
 
@@ -124,7 +125,8 @@ const images = [
   mashaImg,
   violaImg,
   katyaImg,
-  vikaImg
+  vikaImg,
+  map
 ];
 
 const Loading = () => {

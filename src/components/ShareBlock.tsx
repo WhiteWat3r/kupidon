@@ -6,7 +6,7 @@ import { baseUrl } from '../utils/constants';
 
 interface IShareBlockProps {
   shareResult: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const ShareBlock = ({ shareResult, onClick }: IShareBlockProps) => {

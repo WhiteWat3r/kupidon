@@ -31,7 +31,9 @@ export const Result = () => {
     }
   }, []); // звук финиша при попадании на страницу с результатом
 
-  console.log(gameResult);
+  useEffect(() => {
+    ym(94707499,'reachGoal','fin37')
+},[])
 
   return (
     <div
