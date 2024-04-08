@@ -52,7 +52,7 @@ export const OnBoarding = () => {
   return (
     <div
       className={classNames(
-        'bg-main-full-bg h-full bg-no-repeat bg-center !bg-[length:1800px]',
+        'bg-main-full-bg h-full bg-no-repeat bg-center bg-cover',
         step === 3 && 'animate-screenMove',
         step === 4 && '!bg-[60%]',
       )}>

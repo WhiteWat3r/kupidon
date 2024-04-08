@@ -1,5 +1,10 @@
 import { useAppDispatch, useAppSelector } from '../store/store';
-import { decreaseArrows, setCurrentScreen, setGameResult } from '../store/gameSlice';
+import {
+  decreaseArrows,
+  setCurrentScreen,
+  setGameResult,
+  setIntermediateGuys,
+} from '../store/gameSlice';
 import { SCREENS } from '../types/screens';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
@@ -10,7 +15,6 @@ import { useEffect, useState } from 'react';
 import { Profile } from '../components/Profile';
 import { IGuy } from '../types/guys';
 import { ArrowsCounter } from '../components/ArrowsCounter';
-import { useGetCurrentBreakpoint } from '../hooks/useGetCurrentBreakpoint';
 import { PauseButton } from '../components/PauseButton';
 import { Pause } from '../components/Pause';
 import { Hearts } from '../components/Hearts';
@@ -19,21 +23,24 @@ export const Game = () => {
   const dispatch = useAppDispatch();
 
   const arrowsCount = useAppSelector((store) => store.game.arrows);
-  const [availableGuys, setAvailableGuys] = useState([...guys]);
+  const intermediateGuys = useAppSelector((store) => store.game.intermediateGuys);
+
+  const [availableGuys, setAvailableGuys] = useState(
+    intermediateGuys.length > 0 ? guys.filter((g) => !intermediateGuys.includes(g)) : [...guys],
+  );
   const [currentGuy, setCurrentGuy] = useState(guys[0]);
   const [clickedOnBoardGuy, setClickedOnBoardGuy] = useState<IGuy | undefined>(undefined);
-  const [happyGuys, setHappyGuys] = useState<IGuy[]>([]);
-
-  const [lvlStatus, setLvlStatus] = useState(1);
-
+  const [happyGuys, setHappyGuys] = useState<IGuy[]>(
+    intermediateGuys.length > 0 ? intermediateGuys : [],
+  );
   const [isPaused, setIsPaused] = useState(false);
+  const [lvlStatus, setLvlStatus] = useState(1);
 
   //1 - начало
   //2 - успех
   //3 - неудача
 
   const [isProcessing, setIsProcessing] = useState(false); // стейт для блокировки нажатий во время результата
-  const { currentBreakpointName } = useGetCurrentBreakpoint();
 
   const getGuy = () => {
     if (availableGuys.length === 0) {
@@ -65,25 +72,28 @@ export const Game = () => {
       setHappyGuys([...happyGuys, currentGuy]);
       setLvlStatus(2);
       // console.log('успех');
+
+      setTimeout(() => {
+        if (availableGuys.length === 0) {
+          dispatch(setCurrentScreen(SCREENS.THE_RESULT)); // если свободныз ребяток больше нет - к результату
+          dispatch(setIntermediateGuys([])); // чистим массив персонажей в сторе
+        } else {
+          getGuy(); // иначе спавним нового
+        }
+      }, 2000);
     } else {
       setLvlStatus(3);
       dispatch(decreaseArrows());
     }
 
-
     setTimeout(() => {
-      if (availableGuys.length === 0) {
-        dispatch(setCurrentScreen(SCREENS.THE_RESULT)); // если свободныз ребяток больше нет - к результату
-      } else if (human.name === currentGuy.lookingFor){
-        getGuy(); // иначе спавним нового
-      }
-
+      // console.log(lvlStatus);
 
       setLvlStatus(1);
       setClickedOnBoardGuy(undefined);
 
       setIsProcessing(false);
-    }, 2000); // через две секунды после результата получаем нового перса
+    }, 200); // через две секунды после результата получаем нового перса
   };
 
   useEffect(() => {
@@ -91,7 +101,10 @@ export const Game = () => {
   }, []); // первый персонаж
 
   useEffect(() => {
-    arrowsCount === 0 && availableGuys.length > 0 && dispatch(setCurrentScreen(SCREENS.THE_SHARE));
+    if (arrowsCount === 0 && availableGuys.length > 0) {
+      dispatch(setIntermediateGuys(happyGuys)); //  сохрнаняем массив персонажей, которые нашли пару, если игрок зашерит помощь
+      dispatch(setCurrentScreen(SCREENS.THE_SHARE));
+    }
   }, [arrowsCount]); // стрелы закончились - на страницу шера (отправляем только если это не ласт уровень)
 
   useEffect(() => {
@@ -99,19 +112,20 @@ export const Game = () => {
     // happyGuys.length === 10 && dispatch(setCurrentScreen(SCREENS.THE_RESULT));
   }, [happyGuys]); // обновление результата
 
-  console.log(availableGuys.length, 'Сколько осталось');
-  console.log(happyGuys.length, 'Сколько пар');
+  // console.log(availableGuys.length, 'Сколько осталось');
+  // console.log(happyGuys.length, 'Сколько пар');
 
   return (
     <div className="flex flex-col justify-between h-full relative overflow-hidden">
+      <div>Правильных - {happyGuys.length}</div>
       <TransformWrapper
         centerOnInit={true}
         disablePadding={true}
         panning={{
           velocityDisabled: true,
         }}
-        minScale={currentBreakpointName === 'desktop' ? 0.5 : 1}
-        initialScale={currentBreakpointName === 'desktop' ? 0.5 : 1}
+        minScale={0.8}
+        initialScale={0.8}
         maxScale={2}
         wheel={{ smoothStep: 0.03 }}>
         <TransformComponent wrapperStyle={{ maxHeight: '100%', maxWidth: '100%' }}>

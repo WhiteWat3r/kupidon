@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SCREENS } from '../types/screens';
+import { IGuy } from '../types/guys';
 
 interface IGameState {
   currentScreen: SCREENS;
@@ -7,6 +8,7 @@ interface IGameState {
   alienCount: number;
   isSoundOn: boolean;
   arrows: number;
+  intermediateGuys: IGuy[];
 }
 
 const gameState: IGameState = {
@@ -15,6 +17,7 @@ const gameState: IGameState = {
   alienCount: 0,
   isSoundOn: false,
   arrows: 5,
+  intermediateGuys: [],
 };
 
 export const gameSlice = createSlice({
@@ -37,9 +40,11 @@ export const gameSlice = createSlice({
     decreaseArrows: (state) => {
       state.arrows = state.arrows - 1;
     },
-
     updateArrows: (state) => {
       state.arrows = 5;
+    },
+    setIntermediateGuys: (state, action) => {
+      state.intermediateGuys = action.payload;
     },
   },
 });
@@ -51,4 +56,5 @@ export const {
   setIsSoundOn,
   decreaseArrows,
   updateArrows,
+  setIntermediateGuys
 } = gameSlice.actions;

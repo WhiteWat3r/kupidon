@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../store/store';
 import { Button } from '../components/Button';
-import { setCurrentScreen } from '../store/gameSlice';
+import { setCurrentScreen, updateArrows } from '../store/gameSlice';
 import { SCREENS } from '../types/screens';
 import { ShareBlock } from '../components/ShareBlock';
 import { useEffect, useState } from 'react';
@@ -10,8 +10,14 @@ export const Share = () => {
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handleNavigate = () => {
+  const handleNavigateToResult = () => {
     dispatch(setCurrentScreen(SCREENS.THE_RESULT));
+  };
+
+
+  const handleNavigateToGame= () => {
+    dispatch(updateArrows())
+    dispatch(setCurrentScreen(SCREENS.THE_GAME));
   };
 
   useEffect(() => {
@@ -28,10 +34,10 @@ export const Share = () => {
         У тебя закончились стрелы! Позови на помощь друга, чтобы продолжить. 
       </p>
 
-      <ShareBlock shareResult={'help'} />
+      <ShareBlock shareResult={'help'} onClick={handleNavigateToGame}/>
 
 <div className='w-[170px]'>
-        <Button onClick={handleNavigate} isDisabled={isButtonDisabled}>
+        <Button onClick={handleNavigateToResult} isDisabled={isButtonDisabled}>
         Не хочу
       </Button>
 </div>
