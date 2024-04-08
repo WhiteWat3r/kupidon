@@ -23,6 +23,13 @@ import max from '../assets/images/profiles/max.png';
 import katya from '../assets/images/profiles/katya.png';
 import vika from '../assets/images/profiles/vika.png';
 
+import dop1 from '../assets/images/profiles/dop1.png';
+import dop2 from '../assets/images/profiles/dop2.png';
+import dop3 from '../assets/images/profiles/dop3.png';
+import dop4 from '../assets/images/profiles/dop4.png';
+
+
+
 import vitalikImg from '../assets/images/peopleImgs/vitalikImg.png';
 import kostyaImg from '../assets/images/peopleImgs/kostyaImg.png';
 import joraImg from '../assets/images/peopleImgs/joraImg.png';
@@ -60,8 +67,7 @@ export const defaultGuys: IGuy[] = [
     height: 150,
     width: 40,
     name: 'Девочка-2',
-    avatar: girl,
-
+    avatar: dop2,
     gender: 'female',
   },
 
@@ -114,7 +120,7 @@ export const defaultGuys: IGuy[] = [
     left: 760,
     width: 50,
     height: 160,
-    avatar: man,
+    avatar: dop3,
     name: 'Парень на дороге',
     gender: 'male',
   },
@@ -158,7 +164,7 @@ export const defaultGuys: IGuy[] = [
     left: 1360,
     width: 60,
     height: 150,
-    avatar: girl,
+    avatar: dop1,
     name: 'Девочка у озера',
     gender: 'female',
   },
@@ -170,7 +176,7 @@ export const defaultGuys: IGuy[] = [
     width: 50,
     height: 140,
     name: 'Парень у озера',
-    avatar: man,
+    avatar: dop4,
     gender: 'male',
   },
 
