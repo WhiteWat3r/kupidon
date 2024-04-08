@@ -65,29 +65,25 @@ export const Game = () => {
       setHappyGuys([...happyGuys, currentGuy]);
       setLvlStatus(2);
       // console.log('успех');
-
-      setTimeout(() => {
-        if (availableGuys.length === 0) {
-          dispatch(setCurrentScreen(SCREENS.THE_RESULT)); // если свободныз ребяток больше нет - к результату
-        } else {
-          getGuy(); // иначе спавним нового
-        }
-        setLvlStatus(1);
-        setClickedOnBoardGuy(undefined);
-
-        setIsProcessing(false);
-      }, 2000); // через две секунды после результата получаем нового перса
     } else {
       setLvlStatus(3);
       dispatch(decreaseArrows());
-
-      setTimeout(() => {
-        setLvlStatus(1);
-        setClickedOnBoardGuy(undefined);
-
-        setIsProcessing(false);
-      }, 2000)
     }
+
+
+    setTimeout(() => {
+      if (availableGuys.length === 0) {
+        dispatch(setCurrentScreen(SCREENS.THE_RESULT)); // если свободныз ребяток больше нет - к результату
+      } else if (human.name === currentGuy.lookingFor){
+        getGuy(); // иначе спавним нового
+      }
+
+
+      setLvlStatus(1);
+      setClickedOnBoardGuy(undefined);
+
+      setIsProcessing(false);
+    }, 2000); // через две секунды после результата получаем нового перса
   };
 
   useEffect(() => {
@@ -103,8 +99,8 @@ export const Game = () => {
     // happyGuys.length === 10 && dispatch(setCurrentScreen(SCREENS.THE_RESULT));
   }, [happyGuys]); // обновление результата
 
-  // console.log(availableGuys.length, 'Сколько осталось');
-  // console.log(happyGuys.length, 'Сколько пар');
+  console.log(availableGuys.length, 'Сколько осталось');
+  console.log(happyGuys.length, 'Сколько пар');
 
   return (
     <div className="flex flex-col justify-between h-full relative overflow-hidden">

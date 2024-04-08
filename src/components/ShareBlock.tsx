@@ -2,7 +2,6 @@ import vkImg from '../assets/images/shareIcons/vk.png';
 import okImg from '../assets/images/shareIcons/ok.png';
 import thImg from '../assets/images/shareIcons/tg.png';
 
-import { OKShareButton, TelegramShareButton, VKShareButton } from 'react-share';
 import { baseUrl } from '../utils/constants';
 
 interface IShareBlockProps {
@@ -13,19 +12,25 @@ export const ShareBlock = ({ shareResult }: IShareBlockProps) => {
   return (
     <ul className="flex gap-4 mt-4">
       <li>
-        <TelegramShareButton url={`${baseUrl}/results/${shareResult}.html`}>
+        <a
+          href={`https://telegram.me/share/url?url=${baseUrl}results/${shareResult}.html`}
+          target="blank">
           <img src={thImg} alt="Телеграмм" className="w-16 h-16 hover:opacity-70" />
-        </TelegramShareButton>
+        </a>
       </li>
       <li>
-        <OKShareButton url={`${baseUrl}/results/${shareResult}.html`}>
+        <a
+          href={`https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=${baseUrl}results/${shareResult}.html`}
+          target="blank">
           <img src={okImg} alt="Одноклассники" className="w-16 h-16 hover:opacity-70" />
-        </OKShareButton>
+        </a>
       </li>
       <li>
-        <VKShareButton url={`${baseUrl}/results/${shareResult}.html`}>
+        <a
+          href={`https://vk.com/share.php?url=${baseUrl}results/${shareResult}.html`}
+          target="blank">
           <img src={vkImg} alt="Вконтактe" className="w-16 h-16 hover:opacity-70" />
-        </VKShareButton>
+        </a>
       </li>
     </ul>
   );

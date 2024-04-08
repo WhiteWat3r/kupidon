@@ -1,5 +1,7 @@
 import { useAppSelector } from '../store/store';
 
+import clickSound from "../assets/music/click.mp3"
+
 interface IButtonProps {
   children: string;
   onClick: () => void;
@@ -10,7 +12,7 @@ export const Button = ({ children, onClick, isDisabled, type }: IButtonProps) =>
   const isSoundOn = useAppSelector((store) => store.game.isSoundOn);
 
   const handleClick = () => {
-    const audio = new Audio('/music/click.mp3');
+    const audio = new Audio(clickSound);
     isSoundOn && audio.play(); // звук клика звучит только в случае включенного звука
     onClick();
   }; // обработчик клика по кнопке

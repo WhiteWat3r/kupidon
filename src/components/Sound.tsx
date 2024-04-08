@@ -4,10 +4,13 @@ import soundOff from '../assets/images/buttons/soundOff.svg';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { setIsSoundOn } from '../store/gameSlice';
 
+import defaultMusic from "../assets/music/defaultMusic.mp3"
+import gameMusic from "../assets/music/gameMusic.mp3"
+
 export const Sound = () => {
   const dispatch = useAppDispatch();
 
-  const [currentMusic, setCurrentMusic] = useState('/music/defaultMusic.mp3');
+  const [currentMusic, setCurrentMusic] = useState(defaultMusic);
 
   const isSoundOn = useAppSelector((store) => store.game.isSoundOn);
   const currentRoute = useAppSelector((store) => store.game.currentScreen);
@@ -20,7 +23,7 @@ export const Sound = () => {
   useEffect(() => {
     if (isSoundOn) {
       setCurrentMusic(
-        currentRoute === 'THE_GAME' ? '/music/gameMusic.mp3' : '/music/defaultMusic.mp3',
+        currentRoute === 'THE_GAME' ? gameMusic : defaultMusic,
       );
     }
   }, [currentRoute, isSoundOn]); // обновление музыки только при изменении роута или состояния звука

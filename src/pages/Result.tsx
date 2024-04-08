@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { ShareBlock } from '../components/ShareBlock';
 import { SCREENS } from '../types/screens';
 import { setCurrentScreen, updateArrows } from '../store/gameSlice';
+import finishMusic from "../assets/music/finish.mp3"
 
 export const Result = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +17,7 @@ export const Result = () => {
 
   const shareResult = gameResult === 1 ? 'bad' : gameResult === 2 ? 'good' : 'excellent';
 
-  
+
   const handleNavigate = () => {
     dispatch(updateArrows());
 
@@ -25,7 +26,7 @@ export const Result = () => {
 
   useEffect(() => {
     if (isSoundOn) {
-      const audio = new Audio('/music/finish.mp3');
+      const audio = new Audio(finishMusic);
       audio.play();
     }
   }, []); // звук финиша при попадании на страницу с результатом
