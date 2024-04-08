@@ -7,16 +7,20 @@ import classNames from 'classnames';
 import { ShareBlock } from '../components/ShareBlock';
 import { SCREENS } from '../types/screens';
 import { setCurrentScreen, updateArrows } from '../store/gameSlice';
-import finishMusic from "../assets/music/finish.mp3"
+import finalBad from '../assets/music/finalBad.mp3';
+import finalGood from '../assets/music/finalGood.mp3';
+import finalBest from '../assets/music/finalBest.mp3';
+
+import { useSound } from '../hooks/useSound';
 
 export const Result = () => {
   const dispatch = useAppDispatch();
-  const isSoundOn = useAppSelector((store) => store.game.isSoundOn);
-
   const { gameResult } = useAppSelector((store) => store.game);
+  const [playfinishMusic] = useSound(
+    gameResult === 1 ? finalBad : gameResult === 2 ? finalGood : finalBest,
+  );
 
   const shareResult = gameResult === 1 ? 'bad' : gameResult === 2 ? 'good' : 'excellent';
-
 
   const handleNavigate = () => {
     dispatch(updateArrows());
@@ -25,15 +29,12 @@ export const Result = () => {
   }; // Навигация к игре
 
   useEffect(() => {
-    if (isSoundOn) {
-      const audio = new Audio(finishMusic);
-      audio.play();
-    }
+    playfinishMusic();
   }, []); // звук финиша при попадании на страницу с результатом
 
   useEffect(() => {
-    ym(94707499,'reachGoal','fin37')
-},[])
+    ym(94707499, 'reachGoal', 'fin37');
+  }, []);
 
   return (
     <div
@@ -47,8 +48,9 @@ export const Result = () => {
       <p className="max-w-[320px] p-text mb-auto">{resultTexts[gameResult - 1].text}</p>
 
       <ShareBlock shareResult={shareResult} />
-      <div className='w-[170px]'>
-      <Button onClick={handleNavigate}>{resultTexts[gameResult - 1].button}</Button></div>
+      <div className="w-[170px]">
+        <Button onClick={handleNavigate}>{resultTexts[gameResult - 1].button}</Button>
+      </div>
     </div>
   );
 };

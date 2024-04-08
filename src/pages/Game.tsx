@@ -19,8 +19,15 @@ import { PauseButton } from '../components/PauseButton';
 import { Pause } from '../components/Pause';
 import { Hearts } from '../components/Hearts';
 
+import profileSound from '../assets/music/anketa.mp3';
+import personClick from '../assets/music/personClick.mp3';
+import successMatch from '../assets/music/successMatch.mp3';
+import unSuccessMatch from '../assets/music/unSuccessMatch.mp3';
+import { useSound } from '../hooks/useSound';
+
 export const Game = () => {
   const dispatch = useAppDispatch();
+  const isSoundOn = useAppSelector((store) => store.game.isSoundOn);
 
   const arrowsCount = useAppSelector((store) => store.game.arrows);
   const intermediateGuys = useAppSelector((store) => store.game.intermediateGuys);
@@ -36,11 +43,11 @@ export const Game = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [lvlStatus, setLvlStatus] = useState(1);
 
-  //1 - начало
-  //2 - успех
-  //3 - неудача
-
   const [isProcessing, setIsProcessing] = useState(false); // стейт для блокировки нажатий во время результата
+
+  const [playPersonClick] = useSound(personClick);
+  const [playSuccessMatch] = useSound(successMatch);
+  const [playUnSuccessMatch] = useSound(unSuccessMatch);
 
   const getGuy = () => {
     if (availableGuys.length === 0) {
@@ -65,10 +72,16 @@ export const Game = () => {
     if (human.gender === currentGuy.gender) return; // поддерживаем  традиционные ценности
 
     setIsProcessing(true);
+    playPersonClick();
 
     setClickedOnBoardGuy(human); // выбор перса на карте, по которому был совершен клик
     if (human.name === currentGuy.lookingFor) {
       // если это perfect match, то добавление персонажа в список нашедших и сохранение результата в переменную
+
+      setTimeout(() => {
+        playSuccessMatch();
+      }, 200);
+
       setHappyGuys([...happyGuys, currentGuy]);
       setLvlStatus(2);
       // console.log('успех');
@@ -82,17 +95,22 @@ export const Game = () => {
         }
       }, 2000);
     } else {
+      setTimeout(() => {
+        playUnSuccessMatch();
+      }, 200);
       setLvlStatus(3);
       dispatch(decreaseArrows());
     }
 
     setTimeout(() => {
-      // console.log(lvlStatus);
-
       setLvlStatus(1);
       setClickedOnBoardGuy(undefined);
-
       setIsProcessing(false);
+
+      if (isSoundOn) {
+        const audio = new Audio(profileSound);
+        audio.play();
+      }
     }, 2000); // через две секунды после результата получаем нового перса
   };
 

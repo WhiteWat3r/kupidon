@@ -1,6 +1,7 @@
 import { useAppSelector } from '../store/store';
 
-import clickSound from "../assets/music/click.mp3"
+import clickSound from '../assets/music/click.mp3';
+import { useSound } from '../hooks/useSound';
 
 interface IButtonProps {
   children: string;
@@ -9,11 +10,10 @@ interface IButtonProps {
   type?: 'primary' | 'secondary'; // primary не передаю, он по умолчанию
 }
 export const Button = ({ children, onClick, isDisabled, type }: IButtonProps) => {
-  const isSoundOn = useAppSelector((store) => store.game.isSoundOn);
+  const [playClickSound] = useSound(clickSound);
 
   const handleClick = () => {
-    const audio = new Audio(clickSound);
-    isSoundOn && audio.play(); // звук клика звучит только в случае включенного звука
+    playClickSound();
     onClick();
   }; // обработчик клика по кнопке
 
@@ -28,5 +28,3 @@ export const Button = ({ children, onClick, isDisabled, type }: IButtonProps) =>
     </button>
   );
 };
-
-// before:content-"" before:absolute before:w-full before:box-border before:top-[-12%] before:border-[4px] before:border-red-default before:border-transparent before:border-b-red-default before:left-0
