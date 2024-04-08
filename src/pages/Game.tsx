@@ -124,9 +124,9 @@ export const Game = () => {
         panning={{
           velocityDisabled: true,
         }}
-        minScale={0.8}
-        initialScale={0.8}
-        maxScale={2}
+        minScale={0.4}
+        initialScale={0.4}
+        maxScale={1}
         wheel={{ smoothStep: 0.03 }}>
         <TransformComponent wrapperStyle={{ maxHeight: '100%', maxWidth: '100%' }}>
           <div className={`relative h-full`}>
@@ -137,8 +137,8 @@ export const Game = () => {
                 style={{
                   top: `${(i.top / 2 / 667) * 100}%`,
                   left: `${(i.left / 2 / 1187) * 100}%`,
-                  height: i.height,
-                  width: i.width,
+                  height: i.height * 2,
+                  width: i.width * 2,
                 }}
                 onClick={() => handleClick(i)}
               />
@@ -154,8 +154,8 @@ export const Game = () => {
                 style={{
                   top: `${(i.top / 2 / 667) * 100}%`,
                   left: `${(i.left / 2 / 1187) * 100}%`,
-                  height: i.height,
-                  width: i.width,
+                  height: i.height * 2,
+                  width: i.width * 2,
                 }}
                 // onClick={() => handleClick(i)}
               />
