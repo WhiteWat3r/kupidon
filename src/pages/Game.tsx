@@ -93,7 +93,7 @@ export const Game = () => {
       setClickedOnBoardGuy(undefined);
 
       setIsProcessing(false);
-    }, 200); // через две секунды после результата получаем нового перса
+    }, 2000); // через две секунды после результата получаем нового перса
   };
 
   useEffect(() => {
