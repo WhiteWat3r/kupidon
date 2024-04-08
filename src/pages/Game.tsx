@@ -117,7 +117,7 @@ export const Game = () => {
 
   return (
     <div className="flex flex-col justify-between h-full relative overflow-hidden">
-      <div>Правильных - {happyGuys.length}</div>
+      {/* <div>Правильных - {happyGuys.length}</div> */}
       <TransformWrapper
         centerOnInit={true}
         disablePadding={true}
