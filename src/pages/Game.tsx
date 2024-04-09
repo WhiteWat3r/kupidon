@@ -142,15 +142,16 @@ export const Game = () => {
         panning={{
           velocityDisabled: true,
         }}
-        minScale={0.4}
-        initialScale={0.4}
-        maxScale={1}
-        wheel={{ smoothStep: 0.03 }}>
+        minScale={0.35}
+        initialScale={0.35}
+        maxScale={0.35}
+        // wheel={{ smoothStep: 0.03 }}
+        >
         <TransformComponent wrapperStyle={{ maxHeight: '100%', maxWidth: '100%' }}>
           <div className={`relative h-full`}>
             {defaultGuys.map((i) => (
               <span
-                className={`absolute    cursor-pointer`}
+                className={`absolute cursor-pointer`}
                 key={i.id}
                 style={{
                   top: `${(i.top / 2 / 667) * 100}%`,
@@ -165,7 +166,7 @@ export const Game = () => {
             {guys.map((i) => (
               <img
                 src={i.img}
-                className={`absolute cursor-pointer transition-opacity delay-200 ${
+                className={`absolute cursor-pointer transition-opacity delay-300  ${
                   happyGuys.includes(i) ? 'opacity-1' : 'opacity-0'
                 }`}
                 key={i.id}

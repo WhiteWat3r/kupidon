@@ -93,8 +93,8 @@ export const defaultGuys: IGuy[] = [
   },
   {
     id: 4,
-    top: 65,
-    left: 800,
+    top: 100,
+    left: 870,
     height: 150,
     width: 60,
     name: 'Девочка с книгой',
@@ -127,8 +127,8 @@ export const defaultGuys: IGuy[] = [
 
   {
     id: 7,
-    top: 1015,
-    left: 750,
+    top: 890,
+    left: 590,
     width: 60,
     height: 180,
     name: 'Девочка в юбке',
@@ -138,8 +138,8 @@ export const defaultGuys: IGuy[] = [
 
   {
     id: 8,
-    top: 20,
-    left: 1500,
+    top: 910,
+    left: 140,
     width: 40,
     height: 120,
     name: 'Парень у машины',
@@ -160,8 +160,8 @@ export const defaultGuys: IGuy[] = [
 
   {
     id: 10,
-    top: 1070,
-    left: 1360,
+    top: 1020,
+    left: 1420,
     width: 60,
     height: 150,
     avatar: dop1,
@@ -171,8 +171,8 @@ export const defaultGuys: IGuy[] = [
 
   {
     id: 11,
-    top: 1070,
-    left: 1590,
+    top: 415,
+    left: 1600,
     width: 50,
     height: 140,
     name: 'Парень у озера',
@@ -192,7 +192,7 @@ export const defaultGuys: IGuy[] = [
   },
   {
     id: 13,
-    top: 605,
+    top: 590,
     left: 2130,
     width: 85,
     height: 155,
@@ -203,8 +203,8 @@ export const defaultGuys: IGuy[] = [
 
   {
     id: 14,
-    top: 100,
-    left: 1900,
+    top: 145,
+    left: 1835,
     width: 66,
     height: 160,
     name: 'Девочка в плаще',
@@ -230,10 +230,10 @@ export const guys: IGuy[] = [
 
   {
     id: 2,
-    top: 390,
-    left: 415,
-    height: 140,
-    width: 70,
+    top: 380,
+    left: 430,
+    height: 160,
+    width: 90,
     name: 'Константин, 35',
     gender: 'male',
     lookingFor: 'Девочка на самокате',
@@ -244,10 +244,10 @@ export const guys: IGuy[] = [
 
   {
     id: 3,
-    top: 90,
-    left: 1970,
-    width: 66,
-    height: 160,
+    top: 130,
+    left: 1900,
+    width: 70,
+    height: 165,
     name: 'Георгий, 25',
     gender: 'male',
     lookingFor: 'Девочка в плаще',
@@ -258,8 +258,8 @@ export const guys: IGuy[] = [
 
   {
     id: 4,
-    top: 90,
-    left: 850,
+    top: 130,
+    left: 930,
     height: 150,
     width: 60,
     name: 'Кирилл, 23',
@@ -272,10 +272,10 @@ export const guys: IGuy[] = [
 
   {
     id: 5,
-    top: 1015,
-    left: 815,
+    top: 890,
+    left: 665,
     width: 70,
-    height: 190,
+    height: 180,
     name: 'Санёк, 20',
     gender: 'male',
     lookingFor: 'Девочка в юбке',
@@ -286,7 +286,7 @@ export const guys: IGuy[] = [
 
   {
     id: 6,
-    top: 640,
+    top: 615,
     left: 2080,
     width: 60,
     height: 155,
@@ -300,9 +300,9 @@ export const guys: IGuy[] = [
 
   {
     id: 7,
-    top: 60,
-    left: 1550,
-    width: 40,
+    top: 950,
+    left: 195,
+    width: 45,
     height: 120,
     name: 'Виолетта, 27',
     gender: 'female',
@@ -328,10 +328,10 @@ export const guys: IGuy[] = [
 
   {
     id: 9,
-    top: 285,
+    top: 280,
     left: 1050,
     width: 70,
-    height: 130,
+    height: 135,
     name: 'Катя, 19',
     gender: 'female',
     lookingFor: 'Парень на скейте',

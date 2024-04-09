@@ -28,6 +28,7 @@ export default {
         'comics-angel-2': 'url("/src/assets/images/backgrounds/angel-2.png")',
         'comics-angel-3': 'url("/src/assets/images/backgrounds/angel-3.png")',
 
+        'site-main' : 'url("/src/assets/images/backgrounds/bg.png")',
         share: 'url("/src/assets/images/backgrounds/share.png")',
         'result-1': 'url("/src/assets/images/backgrounds/result-1.png")',
         'result-2': 'url("/src/assets/images/backgrounds/result-2.png")',
