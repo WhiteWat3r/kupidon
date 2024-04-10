@@ -24,6 +24,7 @@ import personClick from '../assets/music/personClick.mp3';
 import successMatch from '../assets/music/successMatch.mp3';
 import unSuccessMatch from '../assets/music/unSuccessMatch.mp3';
 import { useSound } from '../hooks/useSound';
+import classNames from 'classnames';
 
 export const Game = () => {
   const dispatch = useAppDispatch();
@@ -150,7 +151,7 @@ export const Game = () => {
           <div className={`relative h-full`}>
             {defaultGuys.map((i) => (
               <span
-                className={`absolute cursor-pointer`}
+                  className={classNames(`absolute    cursor-pointer`, happyGuys.filter((guy) => guy.lookingFor === i.name).length > 0 && 'pointer-events-none')}
                 key={i.id}
                 style={{
                   top: `${(i.top / 2 / 667) * 100}%`,
