@@ -11,15 +11,13 @@ interface IProfileProps {
   currentGuy: IGuy;
   lvlStatus: number;
   clickedOnBoardGuy?: IGuy;
-  isPaused: boolean;
 }
 
-export const Profile = ({ currentGuy, lvlStatus, clickedOnBoardGuy, isPaused }: IProfileProps) => {
+export const Profile = ({ currentGuy, lvlStatus, clickedOnBoardGuy }: IProfileProps) => {
   return (
     <div
-      className={`absolute bottom-[7px] left-[50%] w-[363px] h-[126px]  translate-x-[-50%] rounded-[20px] flex justify-between items-center gap-[4px] border border-1 border-black  shadow-sound ${
-        lvlStatus === 1 ? 'bg-white' : lvlStatus === 2 ? 'bg-custom-pink2' : 'bg-custom-gray'
-      } ${isPaused ? 'opacity-0' : ''}`}>
+      className={`absolute bottom-[7px] left-[50%] w-[363px] h-[126px]  translate-x-[-50%] rounded-[20px] flex justify-between items-center gap-[4px] border border-1 border-black  shadow-sound ${lvlStatus === 1 ? 'bg-white' : lvlStatus === 2 ? 'bg-custom-pink2' : 'bg-custom-gray'
+        }`}>
       <img src={currentGuy.avatar} alt={currentGuy.name} className="h-[107px] ml-[8px]" />
 
       {lvlStatus === 1 ? (

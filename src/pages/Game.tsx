@@ -15,8 +15,6 @@ import { useEffect, useState } from 'react';
 import { Profile } from '../components/Profile';
 import { IGuy } from '../types/guys';
 import { ArrowsCounter } from '../components/ArrowsCounter';
-import { PauseButton } from '../components/PauseButton';
-import { Pause } from '../components/Pause';
 import { Hearts } from '../components/Hearts';
 
 import profileSound from '../assets/music/anketa.mp3';
@@ -40,7 +38,6 @@ export const Game = () => {
   const [happyGuys, setHappyGuys] = useState<IGuy[]>(
     intermediateGuys.length > 0 ? intermediateGuys : [],
   );
-  const [isPaused, setIsPaused] = useState(false);
   const [lvlStatus, setLvlStatus] = useState(1);
 
   const [isProcessing, setIsProcessing] = useState(false); // стейт для блокировки нажатий во время результата
@@ -146,7 +143,7 @@ export const Game = () => {
         initialScale={0.35}
         maxScale={0.35}
         // wheel={{ smoothStep: 0.03 }}
-        >
+      >
         <TransformComponent wrapperStyle={{ maxHeight: '100%', maxWidth: '100%' }}>
           <div className={`relative h-full`}>
             {defaultGuys.map((i) => (
@@ -183,20 +180,12 @@ export const Game = () => {
             <img className={'h-full max-w-none'} src={map} alt="Карта" />
           </div>
         </TransformComponent>
-
-        <PauseButton onClick={() => setIsPaused(!isPaused)} />
-
-        {isPaused && <Pause setIsPaused={setIsPaused} />}
-
-        <ArrowsCounter arrowsCount={arrowsCount} isPaused={isPaused} />
-
-        <Hearts lvlStatus={lvlStatus} isPaused={isPaused} />
-
+        <ArrowsCounter arrowsCount={arrowsCount} />
+        <Hearts lvlStatus={lvlStatus} />
         <Profile
           currentGuy={currentGuy}
           lvlStatus={lvlStatus}
           clickedOnBoardGuy={clickedOnBoardGuy}
-          isPaused={isPaused}
         />
       </TransformWrapper>
     </div>

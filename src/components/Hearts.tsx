@@ -5,10 +5,9 @@ import brokenHeart from '../assets/images/hearts/brokenHeart.png';
 
 interface IHeartsProps {
   lvlStatus: number;
-  isPaused: boolean;
 }
 
-export const Hearts = ({ lvlStatus, isPaused }: IHeartsProps) => {
+export const Hearts = ({ lvlStatus }: IHeartsProps) => {
   const [hearts, setHearts] = useState<{ xPos: number; active: boolean; src: string }[]>([]);
 
   useEffect(() => {
@@ -33,9 +32,7 @@ export const Hearts = ({ lvlStatus, isPaused }: IHeartsProps) => {
 
   return (
     <div
-      className={`absolute bottom-[120px] h-[200px] w-[363px] overflow-hidden pointer-events-none px-[7px] left-[50%] translate-x-[-50%]  ${
-        isPaused ? 'opacity-0' : ''
-      }`}>
+      className={`absolute bottom-[120px] h-[200px] w-[363px] overflow-hidden pointer-events-none px-[7px] left-[50%] translate-x-[-50%]`}>
       {hearts.map(({ xPos, active, src }, index) =>
         active ? (
           <img

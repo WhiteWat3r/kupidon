@@ -5,6 +5,24 @@ import { setCurrentScreen } from '../store/gameSlice';
 import { SCREENS } from '../types/screens';
 import { useAppDispatch } from '../store/store';
 
+const stepsContent: { [key: number]: { text: React.ReactNode } } = {
+  1: {
+    text: (
+      <p className="max-w-[332px]">
+        Купидон очень хорошо поработал в прошлом году и решил отдохнуть
+      </p>
+    ),
+  },
+  2: {
+    text: (
+      <p className="max-w-[320px]">
+        Но не тут-то было!  В новом году на него свалилось ещё больше работы!
+      </p>
+    ),
+  },
+  3: { text: <p className="mt-[40px]">Во имя любви!</p> },
+};
+
 export const Comics = () => {
   const [step, setStep] = useState(1);
   const dispatch = useAppDispatch();
@@ -16,24 +34,11 @@ export const Comics = () => {
   const handlePrevClick = () => {
     setStep(step - 1);
   };
-//   bg-[length:1500px]
+  //   bg-[length:1500px]
   return (
     <div
-      className={classNames(
-        'relative flex flex-col h-full box-border bg-center bg-cover justify-end pb-[26px] items-center bg-no-repeat',
-        step === 1 && 'bg-comics-angel-1',
-        step === 2 && 'bg-comics-angel-2',
-        step === 3 && 'bg-comics-angel-3',
-      )}
-    
-      >
-      {step === 2 ? (
-        <p className='absolute top-[76px] p-text max-w-[250px]'>Кажется, мне снова придётся поработать</p>
-      ) : step === 3 ? (
-        <p className='absolute top-[112px] p-text '>Во имя любви!</p>
-      ) : (
-        ''
-      )}
+      className={`relative flex flex-col h-full box-border bg-center bg-cover justify-end pb-[26px] items-center bg-no-repeat bg-comics-angel-${step}`}>
+      <div className="absolute top-[80px] p-text">{stepsContent[step].text}</div>
 
       <div className="flex justify-between px-[20px] w-full">
         {step > 1 && <StepButton onClick={handlePrevClick} mode={'prev'} />}
