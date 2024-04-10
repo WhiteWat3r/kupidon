@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../store/store';
 import {
-  decreaseArrows,
   setCurrentScreen,
   setGameResult,
   setIntermediateGuys,
@@ -16,7 +15,7 @@ import { defaultGuys, guys } from '../utils/constants';
 import { useEffect, useState } from 'react';
 import { Profile } from '../components/Profile';
 import { IGuy } from '../types/guys';
-import { ArrowsCounter } from '../components/ArrowsCounter';
+import { Timer } from '../components/Timer';
 import { Hearts } from '../components/Hearts';
 
 import profileSound from '../assets/music/anketa.mp3';
@@ -28,8 +27,7 @@ import { useSound } from '../hooks/useSound';
 export const Game = () => {
   const dispatch = useAppDispatch();
   const isSoundOn = useAppSelector((store) => store.game.isSoundOn);
-
-  const arrowsCount = useAppSelector((store) => store.game.arrows);
+  const [timer, setTimer] = useState(150);
   const intermediateGuys = useAppSelector((store) => store.game.intermediateGuys);
 
   const [availableGuys, setAvailableGuys] = useState(
@@ -65,6 +63,15 @@ export const Game = () => {
     }
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimer((prevTimer) => prevTimer - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
   const handleClick = (human: IGuy) => {
     if (isProcessing) return; // если на экране таймер perfect match еще не закончился - не реагируем
 
@@ -98,7 +105,6 @@ export const Game = () => {
         playUnSuccessMatch();
       }, 200);
       setLvlStatus(3);
-      dispatch(decreaseArrows());
     }
 
     setTimeout(() => {
@@ -118,11 +124,11 @@ export const Game = () => {
   }, []); // первый персонаж
 
   useEffect(() => {
-    if (arrowsCount === 0 && availableGuys.length > 0) {
+    if (timer < 1) {
       dispatch(setIntermediateGuys(happyGuys)); //  сохрнаняем массив персонажей, которые нашли пару, если игрок зашерит помощь
       dispatch(setCurrentScreen(SCREENS.THE_SHARE));
     }
-  }, [arrowsCount]); // стрелы закончились - на страницу шера (отправляем только если это не ласт уровень)
+  }, [timer]); // стрелы закончились - на страницу шера (отправляем только если это не ласт уровень)
 
   useEffect(() => {
     dispatch(setGameResult(happyGuys.length < 4 ? 1 : happyGuys.length < 7 ? 2 : 3));
@@ -184,7 +190,8 @@ export const Game = () => {
 
         <img src={kupidon} alt="Купидон" className=' absolute top-[20px] right-[20px] z-20 w-[74px]' />
 
-        <ArrowsCounter arrowsCount={arrowsCount} />
+        <Timer time={timer} />
+
         <Hearts lvlStatus={lvlStatus} />
         <Profile
           currentGuy={currentGuy}

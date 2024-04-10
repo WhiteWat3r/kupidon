@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import '../fonts/DelaGothicOne/DelaGothicOne.css';
+@import '../fonts//Merriweather/Merriweather.css';
 
 @layer utilities {
   .h1-text {
@@ -16,6 +17,11 @@
   }
   .button-text {
     @apply font-normal leading-[24px] text-[24px] text-center text-black;
+  }
+
+  .timer-text {
+    @apply font-black text-[48px] leading-[60px] text-white text-shadow ;
+    font-family: 'Merriweather';
   }
 }
 
@@ -32,7 +38,7 @@ body,
 }
 
 body {
-  font-family: 'Dela Gothic One', sans-serif;
+  font-family: 'Dela Gothic One', 'Merriweather', sans-serif;
   margin: 0;
   // background: rgb(63, 94, 251);
   // background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(138, 205, 234, 1) 100%);

@@ -5,12 +5,12 @@ import { Button } from '../components/Button';
 import angelImg from '../assets/images/angel/angel-1.svg';
 import profile1 from '../assets/images/profiles/profile1.png';
 import hand from '../assets/images/hands/hand.svg';
-import arrows from '../assets/images/arrows/arrows.png';
 
 import { useAppDispatch } from '../store/store';
 import { setCurrentScreen } from '../store/gameSlice';
 import { SCREENS } from '../types/screens';
 import StepButton from '../components/StepButton';
+import { Timer } from '../components/Timer';
 
 const screensInfo = [
   {
@@ -32,8 +32,11 @@ const screensInfo = [
     content: <img className="absolute bottom-[10%] animate-handMove" src={hand} alt="Рука" />,
   },
   {
-    text: 'Если человек выбран правильно, пара совпадёт. Если нет, ищи дальше! У тебя есть 5 попыток. ',
-    content: <img className="absolute top-[120px] w-[156px]" src={arrows} alt="Стрелы" />,
+    text: 'У Купидона скоро закончится рабочий день  —  следи за временем',
+    content: <div className="absolute top-[130px] w-[156px]">
+      <Timer time={150} />
+
+    </div>,
   },
 ];
 
@@ -57,7 +60,7 @@ export const OnBoarding = () => {
         step === 4 && '!bg-[60%]',
       )}>
       <div className=" flex flex-col h-full box-border  justify-between pb-[26px] pt-[112px] items-center bg-gradient-to-b from-gradient-color">
-        <p className={`p-text mt-[30px] max-w-[306px] ${step === 4 && 'mt-[80px]'}`}>
+        <p className={`p-text mt-[30px] max-w-[306px] ${step === 4 && 'mt-[110px] !max-w-[300px]'}`}>
           {screensInfo[step - 1].text}
         </p>
 

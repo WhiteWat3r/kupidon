@@ -32,10 +32,11 @@ export const Share = () => {
   }, []);
   return (
     <div className="flex flex-col items-center h-full bg-cover !bg-[center_bottom_-20px] text-center pt-[84px] pb-[47px] gap-[20px] bg-share">
-      <h1 className="h1-text mt-auto">Упс!</h1>
+      <h1 className="h1-text">Упс!</h1>
 
       <p className="max-w-[320px] p-text mb-auto">
-        У тебя закончились стрелы! Позови на помощь друга, чтобы продолжить. 
+        У тебя закончилось  время!
+        Позови на помощь друга, чтобы продолжить.
       </p>
 
       <ShareBlock shareResult={'help'} onClick={handleNavigateToGame} />
