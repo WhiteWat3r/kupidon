@@ -9,6 +9,8 @@ import { SCREENS } from '../types/screens';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
 import map from '../assets/images/backgrounds/map.png';
+import kupidon from '../assets/images/angel/kupidon.png';
+
 
 import { defaultGuys, guys } from '../utils/constants';
 import { useEffect, useState } from 'react';
@@ -142,7 +144,7 @@ export const Game = () => {
         minScale={0.35}
         initialScale={0.35}
         maxScale={0.35}
-        // wheel={{ smoothStep: 0.03 }}
+      // wheel={{ smoothStep: 0.03 }}
       >
         <TransformComponent wrapperStyle={{ maxHeight: '100%', maxWidth: '100%' }}>
           <div className={`relative h-full`}>
@@ -163,9 +165,8 @@ export const Game = () => {
             {guys.map((i) => (
               <img
                 src={i.img}
-                className={`absolute cursor-pointer transition-opacity delay-300  ${
-                  happyGuys.includes(i) ? 'opacity-1' : 'opacity-0'
-                }`}
+                className={`absolute cursor-pointer transition-opacity delay-300  ${happyGuys.includes(i) ? 'opacity-1' : 'opacity-0'
+                  }`}
                 key={i.id}
                 style={{
                   top: `${(i.top / 2 / 667) * 100}%`,
@@ -173,13 +174,16 @@ export const Game = () => {
                   height: i.height * 2,
                   width: i.width * 2,
                 }}
-                // onClick={() => handleClick(i)}
+              // onClick={() => handleClick(i)}
               />
             ))}
 
             <img className={'h-full max-w-none'} src={map} alt="Карта" />
           </div>
         </TransformComponent>
+
+        <img src={kupidon} alt="Купидон" className=' absolute top-[20px] right-[20px] z-20 w-[74px]' />
+
         <ArrowsCounter arrowsCount={arrowsCount} />
         <Hearts lvlStatus={lvlStatus} />
         <Profile

@@ -5,22 +5,32 @@ import { setCurrentScreen } from '../store/gameSlice';
 import { SCREENS } from '../types/screens';
 import { useAppDispatch } from '../store/store';
 
-const stepsContent: { [key: number]: { text: React.ReactNode } } = {
+type StepContent = {
+  text: React.ReactNode;
+  bg: string;
+};
+
+const stepsContent: { [key: number]: StepContent } = {
   1: {
     text: (
       <p className="max-w-[332px]">
         Купидон очень хорошо поработал в прошлом году и решил отдохнуть
       </p>
     ),
+    bg: 'bg-comics-angel-1'
   },
   2: {
     text: (
       <p className="max-w-[320px]">
-        Но не тут-то было!  В новом году на него свалилось ещё больше работы!
+        Но не тут-то было! В новом году на него свалилось ещё больше работы!
       </p>
     ),
+    bg: 'bg-comics-angel-2'
   },
-  3: { text: <p className="mt-[40px]">Во имя любви!</p> },
+  3: {
+    text: <p className="mt-[40px]">Во имя любви!</p>,
+    bg: 'bg-comics-angel-3'
+  },
 };
 
 export const Comics = () => {
@@ -37,7 +47,7 @@ export const Comics = () => {
   //   bg-[length:1500px]
   return (
     <div
-      className={`relative flex flex-col h-full box-border bg-center bg-cover justify-end pb-[26px] items-center bg-no-repeat bg-comics-angel-${step}`}>
+      className={classNames(`relative flex flex-col h-full box-border bg-center bg-cover justify-end pb-[26px] items-center bg-no-repeat`,  stepsContent[step].bg)}>
       <div className="absolute top-[80px] p-text">{stepsContent[step].text}</div>
 
       <div className="flex justify-between px-[20px] w-full">

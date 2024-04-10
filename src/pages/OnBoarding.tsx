@@ -5,7 +5,7 @@ import { Button } from '../components/Button';
 import angelImg from '../assets/images/angel/angel-1.svg';
 import profile1 from '../assets/images/profiles/profile1.png';
 import hand from '../assets/images/hands/hand.svg';
-import arrows from '../assets/images/arrows.png';
+import arrows from '../assets/images/arrows/arrows.png';
 
 import { useAppDispatch } from '../store/store';
 import { setCurrentScreen } from '../store/gameSlice';

@@ -6,7 +6,7 @@ import soundOff from '../assets/images/buttons/soundOff.svg';
 import angelImg from '../assets/images/angel/angel-1.svg';
 import hand from '../assets/images/hands/hand.svg';
 import profile1 from '../assets/images/profiles/profile1.png';
-import arrows from '../assets/images/arrows.png';
+import arrows from '../assets/images/arrows/arrows.png';
 
 import bg1 from '../assets/images/backgrounds/main-bg.png';
 import bgFull from '../assets/images/backgrounds/main-full-bg.png';
