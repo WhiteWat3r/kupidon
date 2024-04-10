@@ -22,7 +22,7 @@ const stepsContent: { [key: number]: StepContent } = {
   2: {
     text: (
       <p className="max-w-[320px]">
-        Но не тут-то было! В новом году на него свалилось ещё больше работы!
+        Но не тут-то было! В&nbsp;новом году на него свалилось ещё больше работы!
       </p>
     ),
     bg: 'bg-comics-angel-2'
