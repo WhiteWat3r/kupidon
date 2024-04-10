@@ -14,7 +14,11 @@ import { Timer } from '../components/Timer';
 
 const screensInfo = [
   {
-    text: 'Сегодня ты – купидон!  Твоя задача: создать как можно больше пар.',
+    text:
+      <p className={`p-text mt-[30px] max-w-[300px]`}>
+        Сегодня ты – купидон!  Твоя задача: создать как можно больше пар.
+      </p>
+    ,
     content: (
       <img
         className="absolute bottom-[7%] h-[360px] w-full object-none"
@@ -24,19 +28,29 @@ const screensInfo = [
     ),
   },
   {
-    text: 'Внимательно изучи анкету человека и найди подходящую для него пару на карте.',
+    text:
+      <p className={`p-text mt-[30px] max-w-[300px]`}>
+        Внимательно изучи анкету человека и найди подходящую для него пару на карте.
+      </p>,
     content: <img className="w-full px-[9px] mt-[34px] mb-auto" src={profile1} alt="Анкета" />,
   },
   {
-    text: 'Перемещайся по карте и кликай на человека, чтобы выпустить стрелу любви.',
+    text:
+      <p className={`p-text mt-[30px] max-w-[300px]`}>
+        Перемещайся по карте и кликай на человека, чтобы выпустить стрелу любви.
+      </p>,
     content: <img className="absolute bottom-[10%] animate-handMove" src={hand} alt="Рука" />,
   },
   {
-    text: 'У Купидона скоро закончится рабочий день  —  следи за временем',
-    content: <div className="absolute top-[130px] w-[156px]">
-      <Timer time={150} />
+    text:
+      <p className={`p-text mt-[110px] max-w-[300px]`}>
+        У Купидона скоро закончится рабочий день  —  следи за временем
+      </p>,
 
-    </div>,
+    content:
+      <div className="absolute top-[130px] w-[156px]">
+        <Timer time={150} />
+      </div>,
   },
 ];
 
@@ -60,9 +74,9 @@ export const OnBoarding = () => {
         step === 4 && '!bg-[60%]',
       )}>
       <div className=" flex flex-col h-full box-border  justify-between pb-[26px] pt-[112px] items-center bg-gradient-to-b from-gradient-color">
-        <p className={`p-text mt-[30px] max-w-[306px] ${step === 4 && 'mt-[110px] !max-w-[300px]'}`}>
-          {screensInfo[step - 1].text}
-        </p>
+
+        {screensInfo[step - 1].text}
+
 
         {screensInfo[step - 1].content}
 
